@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+html {
+  overflow: scroll;
+  font-family: 'Inter', sans-serif;
+}
+body {
+  font-family: 'Inter', sans-serif;
+}
+.tab {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.myNavbar {
+  flex: 0 1 8%;
+  display: flex;
+}
+
+.main {
+  flex: 1 1 92%;
+}
+
+.react-calendar {
+  border-radius: 20px;
+}
+
+.react-calendar__month-view__weekdays {
+  font-size: 0.6em !important;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+}
