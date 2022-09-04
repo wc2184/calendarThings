@@ -44,11 +44,13 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
           <Table size="lg">
             <Thead>
               <Tr>
-                <Th w="30%">Task</Th>
-                <Th w="50%">Deliverable</Th>
-                <Th w="20%" isNumeric>
+                <Th w="80%" sx={{ overflow: 'hidden' }}>
+                  Deliverable
+                </Th>
+                <Th w="20%" sx={{ overflow: 'hidden' }}>
                   Time
                 </Th>
+                <Th sx={{ overflow: 'hidden' }} isNumeric></Th>
               </Tr>
             </Thead>
           </Table>
