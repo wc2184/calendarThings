@@ -22,6 +22,8 @@ body {
 
 .react-calendar {
   border-radius: 20px;
+  background-color: silver !important;
+  padding: 10px;
 }
 
 .react-calendar__month-view__weekdays {
