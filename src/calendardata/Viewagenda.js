@@ -1,10 +1,12 @@
 import {
   Button,
+  Checkbox,
   Input,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Tfoot,
   Th,
   Thead,
@@ -14,13 +16,16 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   updateDoc,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from '..';
+import { v4 as uuidv4 } from 'uuid';
 
 const Viewagenda = ({ tasks, setUpdate, user }) => {
+  const [loading, setLoading] = useState(false);
   //   useEffect(() => {
   //     const renderTasks = async () => {
   //       const querySnapshot = await getDocs(collection(db, 'users'));
@@ -37,6 +42,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
   //     renderTasks();
   //   }, []);
   //   tasks && console.log(tasks[0].first);
+  console.log(tasks);
   return (
     <div>
       {!tasks && (
@@ -88,9 +94,30 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
             <Tbody>
               {tasks.map(task => {
                 return (
-                  <Tr key={Math.floor(100000000 + Math.random() * 900000000)}>
+                  <Tr key={uuidv4()}>
                     {/* <Td>{task.id}</Td> */}
-                    <Td w="80%">{task.first}</Td>
+                    <Td w="80%" sx={{ display: 'flex' }}>
+                      <Text
+                        key={Math.floor(100000000 + Math.random() * 900000000)}
+                        as={task.checked ? 'del' : ''}
+                        onClick={async () => {
+                          //   console.log('hi');
+                          //   console.log(task.id, 'id of task');
+                          //   console.log(task.checked, 'task.checked things');
+                          //   const docRef = doc(db, user.uid, task.id);
+                          //   const theDoc = await getDoc(docRef);
+
+                          await updateDoc(doc(db, user.uid, task.id), {
+                            checked: !task.checked,
+                            // checked: !theDoc.data().checked,
+                          });
+                          setUpdate(uuidv4());
+                          // setLoading(false);
+                        }}
+                      >
+                        {task.first}
+                      </Text>
+                    </Td>
                     <Td w="20%" isNumeric>
                       {/* <input type="datetime-local" value="2017-06-30T16:30" /> */}
                       <Input
@@ -109,7 +136,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                             time: e.target.value,
                             date: realDate,
                           });
-                          setUpdate(task.id);
+                          setUpdate(uuidv4());
                         }}
                       />
                       {/* {
@@ -123,7 +150,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                       <Button
                         onClick={async () => {
                           await deleteDoc(doc(db, user.uid, task.id));
-                          setUpdate(task.id);
+                          setUpdate(uuidv4());
                         }}
                       >
                         Delete

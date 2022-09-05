@@ -98,6 +98,8 @@ export function MyCalendar({ user }) {
         agendas.sort((a, b) => {
           return a.time > b.time ? 1 : b.time > a.time ? -1 : 0;
         });
+        console.log(agendas, 'agendas in the mycal');
+        console.log('does it run here');
         setTasks(agendas);
       }
     };
@@ -114,6 +116,7 @@ export function MyCalendar({ user }) {
         date: date,
         time: date.toISOString().split('T')[0] + 'T00:00',
         user: auth.currentUser.uid,
+        checked: false,
 
         // 2022-09-04T00:00
       });
