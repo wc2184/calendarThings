@@ -1,4 +1,4 @@
-import { Box, Button } from '@chakra-ui/react';
+import { Box, Button, Flex, Spacer } from '@chakra-ui/react';
 import {
   addDoc,
   collection,
@@ -16,6 +16,7 @@ import Viewagenda from './calendardata/Viewagenda';
 import { query, where } from 'firebase/firestore';
 import { useRef } from 'react';
 import { getAuth } from 'firebase/auth';
+import { v4 as uuidv4 } from 'uuid';
 
 export function MyCalendar({ user }) {
   const auth = getAuth();
@@ -24,7 +25,7 @@ export function MyCalendar({ user }) {
   now.setHours(0, 0, 0, 0);
   const [date, setDate] = useState(now);
   const [tasks, setTasks] = useState();
-  const [text, setText] = useState(undefined);
+  const [text, setText] = useState('');
   const [update, setUpdate] = useState();
   const [getAll, setGetAll] = useState(false);
   const textInput = useRef(null);
@@ -105,7 +106,7 @@ export function MyCalendar({ user }) {
     };
     renderTasks();
     return () => window.removeEventListener('keydown', handler, false);
-  }, [text, update, date, getAll]);
+  }, [update, date, getAll]);
 
   const addData = async () => {
     try {
@@ -127,6 +128,7 @@ export function MyCalendar({ user }) {
       );
       console.log(JSON.stringify(date), 'date here');
       setText('');
+      setUpdate(uuidv4());
     } catch (e) {
       console.error('Error adding document: ', e);
     }
@@ -139,12 +141,14 @@ export function MyCalendar({ user }) {
     // Create a query against the collection.
     // const q = query(usersRef, where('first', '==', 'Ada'));
     const stuff = await getDocs(collection(db, user.uid));
-    stuff.forEach(docc => {
+    stuff.forEach(async docc => {
       console.log(docc.data());
-      deleteDoc(doc(db, user.uid, docc.id));
+      await deleteDoc(doc(db, user.uid, docc.id));
     });
     // setText(text);
-    setUpdate(Math.random());
+    setTimeout(() => {
+      setUpdate(Math.random());
+    }, 500);
   };
   console.log(date.toDateString(), 'date');
   console.log(now.toDateString(), 'now');
@@ -152,40 +156,58 @@ export function MyCalendar({ user }) {
 
   return (
     <div className="calendar">
-      <Box sx={{ flexBasis: '40%' }}>
-        <MyCal onChange={changeDate} value={date} />
-        <br />
-        <Button
-          colorScheme="green"
-          variant={getAll == true ? 'solid' : 'outline'}
-          onClick={() => {
-            setGetAll(true);
+      <Box sx={{ flex: '0 1 20%', flexDirection: 'row', display: 'flex' }}>
+        <MyCal sx={{ height: '20vh' }} onChange={changeDate} value={date} />
+
+        {/* <Spacer></Spacer> */}
+        <Box
+          sx={{
+            display: 'flex',
+            flex: '1 0 50%',
+            justifyContent: 'center',
+            flexDirection: 'column',
           }}
         >
-          View all
-        </Button>
-        <br />
-        <br />
-        <Button
-          colorScheme={
-            date.toDateString() == now.toDateString() && getAll == false
-              ? 'green'
-              : 'green'
-          }
-          variant={
-            date.toDateString() == now.toDateString() && getAll == false
-              ? 'solid'
-              : 'outline'
-          }
-          onClick={() => {
-            setDate(now);
-            setGetAll(false);
-          }}
-        >
-          Today
-        </Button>
+          <Flex
+            sx={{ display: 'flex', flexDirection: 'column' }}
+            justifyContent={'center'}
+            alignItems="center"
+          >
+            <Button
+              colorScheme="green"
+              variant={getAll == true ? 'solid' : 'outline'}
+              onClick={() => {
+                setGetAll(true);
+              }}
+              sx={{ width: '120px', height: '50px' }}
+            >
+              View all
+            </Button>
+            <br />
+            <br />
+            <Button
+              colorScheme={
+                date.toDateString() == now.toDateString() && getAll == false
+                  ? 'green'
+                  : 'green'
+              }
+              variant={
+                date.toDateString() == now.toDateString() && getAll == false
+                  ? 'solid'
+                  : 'outline'
+              }
+              onClick={() => {
+                setDate(now);
+                setGetAll(false);
+              }}
+              sx={{ width: '120px', height: '50px' }}
+            >
+              Today
+            </Button>
+          </Flex>
+        </Box>
       </Box>
-      <Box sx={{ flexBasis: '60%' }}>
+      <Box sx={{ height: '50vh', flex: '1 0 70%' }}>
         <Viewagenda tasks={tasks} setUpdate={setUpdate} user={user} />
         <Addagenda
           date={date}

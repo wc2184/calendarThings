@@ -24,6 +24,7 @@ body {
   border-radius: 20px;
   background-color: silver !important;
   padding: 10px;
+  /* min-width: 50% !important; */
 }
 
 .react-calendar__month-view__weekdays {
@@ -33,6 +34,7 @@ body {
 .calendar {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .chakra-text {

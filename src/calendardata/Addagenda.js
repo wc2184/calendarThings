@@ -44,13 +44,18 @@ const Addagenda = ({ date, addData, setText, text, deleteData, textInput }) => {
         }}
         onKeyDown={e => {
           if (e.key == 'Enter') {
-            addData();
+            if (text != '') addData();
           }
         }}
       />
       <br />
       <br />
-      <Button onClick={addData} colorScheme="purple">
+      <Button
+        onClick={() => {
+          if (text != '') addData();
+        }}
+        colorScheme="purple"
+      >
         Add
       </Button>
       <br />

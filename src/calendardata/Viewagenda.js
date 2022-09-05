@@ -50,10 +50,10 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
           <Table size="lg">
             <Thead>
               <Tr>
-                <Th w="80%" sx={{ overflow: 'hidden' }}>
+                <Th w="90%" sx={{ overflow: 'hidden' }}>
                   Deliverable
                 </Th>
-                <Th w="20%" sx={{ overflow: 'hidden' }}>
+                <Th w="10%" sx={{ overflow: 'hidden' }}>
                   Time
                 </Th>
                 <Th sx={{ overflow: 'hidden' }} isNumeric></Th>
@@ -82,10 +82,10 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
           <Table size="lg">
             <Thead>
               <Tr>
-                <Th w="80%" sx={{ overflow: 'hidden' }}>
+                <Th w="90%" sx={{ overflow: 'hidden' }}>
                   Deliverable
                 </Th>
-                <Th w="20%" sx={{ overflow: 'hidden' }}>
+                <Th w="10%" sx={{ overflow: 'hidden' }}>
                   Time
                 </Th>
                 <Th sx={{ overflow: 'hidden' }} isNumeric></Th>
@@ -96,7 +96,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                 return (
                   <Tr key={uuidv4()}>
                     {/* <Td>{task.id}</Td> */}
-                    <Td w="80%" sx={{ display: 'flex' }}>
+                    <Td w="90%" sx={{ display: 'flex' }}>
                       <Text
                         key={Math.floor(100000000 + Math.random() * 900000000)}
                         as={task.checked ? 'del' : ''}
@@ -118,7 +118,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                         {task.first}
                       </Text>
                     </Td>
-                    <Td w="20%" isNumeric>
+                    <Td w="10%" isNumeric>
                       {/* <input type="datetime-local" value="2017-06-30T16:30" /> */}
                       <Input
                         placeholder="Select Date and Time"
