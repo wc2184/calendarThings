@@ -157,7 +157,11 @@ export function MyCalendar({ user }) {
   return (
     <div className="calendar">
       <Box sx={{ flex: '0 1 20%', flexDirection: 'row', display: 'flex' }}>
-        <MyCal sx={{ height: '20vh' }} onChange={changeDate} value={date} />
+        <Box
+          sx={{ flex: '1 0 50%', display: 'flex', justifyContent: 'center' }}
+        >
+          <MyCal sx={{ height: '20vh' }} onChange={changeDate} value={date} />
+        </Box>
 
         {/* <Spacer></Spacer> */}
         <Box
@@ -207,7 +211,7 @@ export function MyCalendar({ user }) {
           </Flex>
         </Box>
       </Box>
-      <Box sx={{ height: '50vh', flex: '1 0 70%' }}>
+      <Box sx={{ marginTop: '25px', height: '50vh', flex: '1 0 70%' }}>
         <Viewagenda tasks={tasks} setUpdate={setUpdate} user={user} />
         <Addagenda
           date={date}
