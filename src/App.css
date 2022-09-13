@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 html {
-  overflow: scroll;
+  /* overflow: scroll; */
   font-family: 'Inter', sans-serif;
+  width: 100vw;
+  height: 100vh;
 }
 body {
   font-family: 'Inter', sans-serif;
@@ -24,6 +26,7 @@ body {
   border-radius: 20px;
   background-color: silver !important;
   padding: 10px;
+  min-height: 315.83px;
   /* min-width: 50% !important; */
 }
 

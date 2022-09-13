@@ -13,7 +13,13 @@ import {
 } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
+import {
+  Navigate,
+  NavLink,
+  Route,
+  Routes,
+  useNavigate,
+} from 'react-router-dom';
 import './App.css';
 import { NavButton } from './NavButton';
 import { MyCalendar } from './MyCalendar';
@@ -120,7 +126,7 @@ function App() {
             </div>
             <div className="main">
               <Routes>
-                <Route path="/" element={<MyCalendar user={user} />} />
+                <Route path="/" element={<Navigate to="/calendar" />} />
                 <Route path="calendar" element={<MyCalendar user={user} />} />
                 <Route path="account" element={<Account user={user} />} />
               </Routes>

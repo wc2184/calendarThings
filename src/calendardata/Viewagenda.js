@@ -10,6 +10,7 @@ import {
   Tfoot,
   Th,
   Thead,
+  Tooltip,
   Tr,
 } from '@chakra-ui/react';
 import {
@@ -42,11 +43,11 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
   //     renderTasks();
   //   }, []);
   //   tasks && console.log(tasks[0].first);
-  console.log(tasks);
+  // console.log(tasks);
   return (
     <div>
       {!tasks && (
-        <TableContainer sx={{ width: '90vw' }}>
+        <TableContainer sx={{ width: '95vw' }}>
           <Table size="lg">
             <Thead>
               <Tr>
@@ -78,11 +79,11 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
         </TableContainer>
       )} */}
       {tasks && (
-        <TableContainer sx={{ width: '90vw' }}>
+        <TableContainer sx={{ width: '100%' }}>
           <Table size="lg">
             <Thead>
               <Tr>
-                <Th w="90%" sx={{ overflow: 'hidden' }}>
+                <Th maxW="40vw" sx={{ overflow: 'hidden' }}>
                   Deliverable
                 </Th>
                 <Th w="10%" sx={{ overflow: 'hidden' }}>
@@ -96,27 +97,42 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                 return (
                   <Tr key={uuidv4()}>
                     {/* <Td>{task.id}</Td> */}
-                    <Td w="90%" sx={{ display: 'flex' }}>
-                      <Text
-                        key={Math.floor(100000000 + Math.random() * 900000000)}
-                        as={task.checked ? 'del' : ''}
-                        onClick={async () => {
-                          //   console.log('hi');
-                          //   console.log(task.id, 'id of task');
-                          //   console.log(task.checked, 'task.checked things');
-                          //   const docRef = doc(db, user.uid, task.id);
-                          //   const theDoc = await getDoc(docRef);
-
-                          await updateDoc(doc(db, user.uid, task.id), {
-                            checked: !task.checked,
-                            // checked: !theDoc.data().checked,
-                          });
-                          setUpdate(uuidv4());
-                          // setLoading(false);
-                        }}
+                    <Td maxW="50vw" sx={{ display: 'flex' }}>
+                      <Tooltip
+                        bg="red.600"
+                        placement="bottom"
+                        offset={[-19, -10]}
+                        openDelay="500"
+                        label={task.first}
+                        fontSize="md"
                       >
-                        {task.first}
-                      </Text>
+                        <Text
+                          minH="40px"
+                          // minH="60px"
+                          sx={{ display: 'flex' }}
+                          key={Math.floor(
+                            100000000 + Math.random() * 900000000
+                          )}
+                          as={task.checked ? 'del' : ''}
+                          onClick={async () => {
+                            //   console.log('hi');
+                            //   console.log(task.id, 'id of task');
+                            //   console.log(task.checked, 'task.checked things');
+                            //   const docRef = doc(db, user.uid, task.id);
+                            //   const theDoc = await getDoc(docRef);
+
+                            await updateDoc(doc(db, user.uid, task.id), {
+                              checked: !task.checked,
+                              // checked: !theDoc.data().checked,
+                            });
+                            setUpdate(uuidv4());
+                            // setLoading(false);
+                          }}
+                          sx={{ overflow: 'hidden' }}
+                        >
+                          {task.first}
+                        </Text>
+                      </Tooltip>
                     </Td>
                     <Td w="10%" isNumeric>
                       {/* <input type="datetime-local" value="2017-06-30T16:30" /> */}

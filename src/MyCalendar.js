@@ -5,6 +5,7 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  updateDoc,
 } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -20,7 +21,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export function MyCalendar({ user }) {
   const auth = getAuth();
-  console.log(auth.currentUser.uid, 'THE AUTH INSIDE');
+  // console.log(auth.currentUser.uid, 'THE AUTH INSIDE');
   let now = new Date();
   now.setHours(0, 0, 0, 0);
   const [date, setDate] = useState(now);
@@ -30,7 +31,7 @@ export function MyCalendar({ user }) {
   const [getAll, setGetAll] = useState(false);
   const textInput = useRef(null);
 
-  console.log(date);
+  // console.log(date);
   const changeDate = date => {
     setGetAll(false);
     setDate(date);
@@ -150,9 +151,41 @@ export function MyCalendar({ user }) {
       setUpdate(Math.random());
     }, 500);
   };
-  console.log(date.toDateString(), 'date');
-  console.log(now.toDateString(), 'now');
-  console.log(date.toDateString() == now.toDateString());
+  // console.log(date.toDateString(), 'date');
+  // console.log(now.toDateString(), 'now');
+  // console.log(date.toDateString() == now.toDateString());
+  const pushToToday = async () => {
+    // Create a reference to the cities collection
+    const usersRef = collection(db, user.uid);
+
+    // Create a query against the collection.
+    const q = query(
+      usersRef,
+      // where('user', '==', user.uid),
+      where('checked', '==', false)
+    );
+    const querySnapshot = await getDocs(q);
+    const agendas = [];
+
+    querySnapshot.forEach(async docu => {
+      let obj = docu.data();
+      console.log(docu.data(), 'HELLO MAN WHAT THE FUCK');
+
+      obj.id = docu.id;
+      await updateDoc(doc(db, user.uid, obj.id), {
+        date: now,
+        time: now.toISOString().split('T')[0] + 'T00:00',
+        // checked: !theDoc.data().checked,
+      });
+      // agendas.push(obj);
+      // agendas.push(doc.data(), doc.id);
+      //   console.log(doc.data());
+      //   console.log(
+      //     `${doc.id} => ${doc.data().date.toDate().toISOString().split('T')[0]}`
+      //   );
+      setUpdate(uuidv4());
+    });
+  };
 
   return (
     <div className="calendar">
@@ -186,6 +219,20 @@ export function MyCalendar({ user }) {
               sx={{ width: '120px', height: '50px' }}
             >
               View all
+            </Button>
+            <br />
+            <br />
+            {/* push all unchecked in view all to today */}
+            <Button
+              colorScheme="green"
+              disabled={!getAll}
+              variant={getAll == true ? 'solid' : 'outline'}
+              onClick={() => {
+                pushToToday();
+              }}
+              sx={{ width: '120px', height: '50px' }}
+            >
+              Push undone
             </Button>
             <br />
             <br />
