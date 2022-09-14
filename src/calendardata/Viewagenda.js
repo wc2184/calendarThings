@@ -101,7 +101,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                     {/* <Td>{task.id}</Td> */}
                     <Td maxW="50vw" sx={{ display: 'flex' }}>
                       {window.navigator.userAgent.match(/iPhone/i) ? (
-                        <Select maxW="4vw" placeholder="i">
+                        <Select maxW="8vw" placeholder={task.first}>
                           <option>{task.first}</option>
                         </Select>
                       ) : null}
