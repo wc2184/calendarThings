@@ -2,6 +2,7 @@ import {
   Button,
   Checkbox,
   Input,
+  Select,
   Table,
   TableContainer,
   Tbody,
@@ -27,6 +28,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const Viewagenda = ({ tasks, setUpdate, user }) => {
   const [loading, setLoading] = useState(false);
+  console.log(window.navigator.userAgent.match(/iPhone/i), 'device');
   //   useEffect(() => {
   //     const renderTasks = async () => {
   //       const querySnapshot = await getDocs(collection(db, 'users'));
@@ -98,6 +100,12 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                   <Tr key={uuidv4()}>
                     {/* <Td>{task.id}</Td> */}
                     <Td maxW="50vw" sx={{ display: 'flex' }}>
+                      {window.navigator.userAgent.match(/iPhone/i) ? (
+                        <Select placeholder="i">
+                          <option>{task.first}</option>
+                        </Select>
+                      ) : null}
+
                       <Tooltip
                         bg="red.600"
                         placement="bottom"
