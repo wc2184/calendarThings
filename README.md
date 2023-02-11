@@ -9,7 +9,7 @@
 </h1>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dkg7lxnj2/image/upload/v1676116464/YoutubeDLNow_kvtefz.png" />
+  <img src="https://res.cloudinary.com/dkg7lxnj2/image/upload/v1676116760/calendarThings_lngnnd.png" />
 </p>
 
 <p align="center">
