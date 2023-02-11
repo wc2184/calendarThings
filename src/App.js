@@ -96,6 +96,17 @@ function App() {
       <ChakraProvider theme={theme}>
         <Box textAlign="center" fontSize="xl">
           <Grid minH="100vh" p={3}>
+            <a
+              style={{ display: 'block', width: '60%', margin: 'auto' }}
+              href="https://github.com/wc2184/calendarThings"
+              target="_blank"
+            >
+              <Image
+                mb={10}
+                width="100%"
+                src="https://res.cloudinary.com/dkg7lxnj2/image/upload/v1676116464/YoutubeDLNow_kvtefz.png"
+              ></Image>
+            </a>
             <VStack spacing={8}>
               <div className="myNavbar"></div>
               <Box>
