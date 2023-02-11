@@ -4,7 +4,7 @@
   <br/>
   <sub>Improve your productivity and organization.</sub>
   <br/> <sub><sub>A flexible todo list w/ calendar app</sub></sub>
-  <p></p><a href="calendar-things.vercel.app">Live Link</a>
+  <p></p><a href="https://calendar-things.vercel.app">Live Link</a>
  
 </h1>
 
@@ -13,7 +13,7 @@
 </p>
 
 <h1 align="center">
-<a href="calendar-things.vercel.app">Live Link</a>
+<a href="https://calendar-things.vercel.app">Live Link</a>
 <p></p>
 </h1>
 <br/>
