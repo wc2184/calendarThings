@@ -9,6 +9,7 @@ import {
   Grid,
   Flex,
   Spacer,
+  Image,
 } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
