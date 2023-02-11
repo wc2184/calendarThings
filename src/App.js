@@ -7,7 +7,6 @@ import {
   VStack,
   Code,
   Grid,
-  theme,
   Flex,
   Spacer,
 } from '@chakra-ui/react';
@@ -29,6 +28,7 @@ import { useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { useEffect } from 'react';
+import theme from './theme';
 
 function App() {
   const [user, setUser] = useState();
