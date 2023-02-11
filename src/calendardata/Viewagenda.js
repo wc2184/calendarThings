@@ -82,7 +82,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
         </TableContainer>
       )} */}
       {tasks && (
-        <TableContainer sx={{ width: '801.25px' }}>
+        <TableContainer sx={{ width: '801.25px', overflowX: 'hidden' }}>
           <Table size="lg">
             <Thead>
               <Tr>
