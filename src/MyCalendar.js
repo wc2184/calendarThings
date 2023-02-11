@@ -30,7 +30,7 @@ export function MyCalendar({ user }) {
   const [update, setUpdate] = useState();
   const [getAll, setGetAll] = useState(false);
   const textInput = useRef(null);
-
+  console.log(tasks, 'task');
   // console.log(date);
   const changeDate = date => {
     setGetAll(false);
@@ -189,86 +189,98 @@ export function MyCalendar({ user }) {
 
   return (
     <div className="calendar">
-      <Box sx={{ flex: '0 1 20%', flexDirection: 'row', display: 'flex' }}>
-        <Box
-          sx={{ flex: '1 0 50%', display: 'flex', justifyContent: 'center' }}
-        >
-          <MyCal sx={{ height: '20vh' }} onChange={changeDate} value={date} />
-        </Box>
+      {tasks && (
+        <>
+          <Box sx={{ flex: '0 1 20%', flexDirection: 'row', display: 'flex' }}>
+            <Box
+              sx={{
+                flex: '1 0 50%',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <MyCal
+                sx={{ height: '20vh' }}
+                onChange={changeDate}
+                value={date}
+              />
+            </Box>
 
-        {/* <Spacer></Spacer> */}
-        <Box
-          sx={{
-            display: 'flex',
-            flex: '1 0 50%',
-            justifyContent: 'center',
-            flexDirection: 'column',
-          }}
-        >
-          <Flex
-            sx={{ display: 'flex', flexDirection: 'column' }}
-            justifyContent={'center'}
-            alignItems="center"
-          >
-            <Button
-              colorScheme="green"
-              variant={getAll == true ? 'solid' : 'outline'}
-              onClick={() => {
-                setGetAll(true);
+            {/* <Spacer></Spacer> */}
+            <Box
+              sx={{
+                display: 'flex',
+                flex: '1 0 50%',
+                justifyContent: 'center',
+                flexDirection: 'column',
               }}
-              sx={{ width: '120px', height: '50px' }}
             >
-              View all
-            </Button>
-            <br />
-            <br />
-            {/* push all unchecked in view all to today */}
-            <Button
-              colorScheme="green"
-              disabled={!getAll}
-              variant={getAll == true ? 'solid' : 'outline'}
-              onClick={() => {
-                pushToToday();
-              }}
-              sx={{ width: '120px', height: '50px' }}
-            >
-              Push undone
-            </Button>
-            <br />
-            <br />
-            <Button
-              colorScheme={
-                date.toDateString() == now.toDateString() && getAll == false
-                  ? 'green'
-                  : 'green'
-              }
-              variant={
-                date.toDateString() == now.toDateString() && getAll == false
-                  ? 'solid'
-                  : 'outline'
-              }
-              onClick={() => {
-                setDate(now);
-                setGetAll(false);
-              }}
-              sx={{ width: '120px', height: '50px' }}
-            >
-              Today
-            </Button>
-          </Flex>
-        </Box>
-      </Box>
-      <Box sx={{ marginTop: '25px', height: '50vh', flex: '1 0 70%' }}>
-        <Viewagenda tasks={tasks} setUpdate={setUpdate} user={user} />
-        <Addagenda
-          date={date}
-          addData={addData}
-          setText={setText}
-          text={text}
-          deleteData={deleteData}
-          textInput={textInput}
-        />
-      </Box>
+              <Flex
+                sx={{ display: 'flex', flexDirection: 'column' }}
+                justifyContent={'center'}
+                alignItems="center"
+              >
+                <Button
+                  colorScheme="green"
+                  variant={getAll == true ? 'solid' : 'outline'}
+                  onClick={() => {
+                    setGetAll(true);
+                  }}
+                  sx={{ width: '120px', height: '50px' }}
+                >
+                  View all
+                </Button>
+                <br />
+                <br />
+                {/* push all unchecked in view all to today */}
+                <Button
+                  colorScheme="green"
+                  disabled={!getAll}
+                  variant={getAll == true ? 'solid' : 'outline'}
+                  onClick={() => {
+                    pushToToday();
+                  }}
+                  sx={{ width: '120px', height: '50px' }}
+                >
+                  Push undone
+                </Button>
+                <br />
+                <br />
+                <Button
+                  colorScheme={
+                    date.toDateString() == now.toDateString() && getAll == false
+                      ? 'green'
+                      : 'green'
+                  }
+                  variant={
+                    date.toDateString() == now.toDateString() && getAll == false
+                      ? 'solid'
+                      : 'outline'
+                  }
+                  onClick={() => {
+                    setDate(now);
+                    setGetAll(false);
+                  }}
+                  sx={{ width: '120px', height: '50px' }}
+                >
+                  Today
+                </Button>
+              </Flex>
+            </Box>
+          </Box>
+          <Box sx={{ marginTop: '25px', height: '50vh', flex: '1 0 70%' }}>
+            <Viewagenda tasks={tasks} setUpdate={setUpdate} user={user} />
+            <Addagenda
+              date={date}
+              addData={addData}
+              setText={setText}
+              text={text}
+              deleteData={deleteData}
+              textInput={textInput}
+            />
+          </Box>
+        </>
+      )}
     </div>
   );
 }

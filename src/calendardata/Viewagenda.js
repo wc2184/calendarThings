@@ -13,6 +13,7 @@ import {
   Thead,
   Tooltip,
   Tr,
+  Box,
 } from '@chakra-ui/react';
 import {
   collection,
@@ -81,7 +82,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
         </TableContainer>
       )} */}
       {tasks && (
-        <TableContainer sx={{ width: '100%' }}>
+        <TableContainer sx={{ width: '801.25px' }}>
           <Table size="lg">
             <Thead>
               <Tr>
@@ -116,6 +117,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                       >
                         <Text
                           minH="40px"
+                          w="280px"
                           // minH="60px"
                           sx={{ display: 'flex' }}
                           key={Math.floor(

@@ -66,7 +66,7 @@ const Addagenda = ({ date, addData, setText, text, deleteData, textInput }) => {
         }}
         colorScheme="red"
       >
-        Delete the entire fucking database
+        Delete Entire Calendar
       </Button>
     </div>
   );

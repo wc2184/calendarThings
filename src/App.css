@@ -2,7 +2,8 @@
 html {
   /* overflow: scroll; */
   font-family: 'Inter', sans-serif;
-  width: 100vw;
+  width: 97vw;
+  padding-left: 2vw;
   height: 100vh;
 }
 body {
