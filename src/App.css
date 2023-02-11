@@ -5,6 +5,7 @@ html {
   width: 97vw;
   padding-left: 2vw;
   height: 100vh;
+  overflow-x: hidden;
 }
 body {
   font-family: 'Inter', sans-serif;
