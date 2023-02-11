@@ -103,12 +103,12 @@ function App() {
               target="_blank"
             >
               <Image
-                mb={10}
                 width="100%"
+                mb="-17"
                 src="https://res.cloudinary.com/dkg7lxnj2/image/upload/v1676116464/YoutubeDLNow_kvtefz.png"
               ></Image>
             </a>
-            <VStack spacing={8}>
+            <VStack>
               <div className="myNavbar"></div>
               <Box>
                 <h1 className="main">Please Log In</h1>
