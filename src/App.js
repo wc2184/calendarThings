@@ -77,7 +77,7 @@ function App() {
         // ...
       });
   };
-  // auth.currentUser && console.log(auth.currentUser.uid, 'user');
+  // auth.currentUser &&
   if (loading)
     return (
       <div

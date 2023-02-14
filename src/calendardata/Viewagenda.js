@@ -29,24 +29,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const Viewagenda = ({ tasks, setUpdate, user }) => {
   const [loading, setLoading] = useState(false);
-  console.log(window.navigator.userAgent.match(/iPhone/i), 'device');
-  //   useEffect(() => {
-  //     const renderTasks = async () => {
-  //       const querySnapshot = await getDocs(collection(db, 'users'));
-  //       const agendas = [];
-  //       querySnapshot.forEach(doc => {
-  //         agendas.push(doc.data());
-  //         //   console.log(doc.data());
-  //         //   console.log(
-  //         //     `${doc.id} => ${doc.data().date.toDate().toISOString().split('T')[0]}`
-  //         //   );
-  //       });
-  //       setTasks(agendas);
-  //     };
-  //     renderTasks();
-  //   }, []);
-  //   tasks && console.log(tasks[0].first);
-  // console.log(tasks);
+
   return (
     <div>
       {!tasks && (
@@ -66,21 +49,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
           </Table>
         </TableContainer>
       )}
-      {/* {tasks && tasks.length == 0 && (
-        <TableContainer sx={{ width: '90vw' }}>
-          <Table size="lg">
-            <Thead>
-              <Tr>
-                <Th w="30%">Task</Th>
-                <Th w="50%">Deliverable</Th>
-                <Th w="20%" isNumeric>
-                  Time
-                </Th>
-              </Tr>
-            </Thead>
-          </Table>
-        </TableContainer>
-      )} */}
+
       {tasks && (
         <TableContainer sx={{ width: '801.25px', overflowX: 'hidden' }}>
           <Table size="lg">
@@ -125,9 +94,9 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                           )}
                           as={task.checked ? 'del' : ''}
                           onClick={async () => {
-                            //   console.log('hi');
-                            //   console.log(task.id, 'id of task');
-                            //   console.log(task.checked, 'task.checked things');
+                            //
+                            //
+                            //
                             //   const docRef = doc(db, user.uid, task.id);
                             //   const theDoc = await getDoc(docRef);
 
@@ -153,8 +122,7 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                         defaultValue={task.time}
                         onBlur={async e => {
                           //   e.target.setAttribute('value', e.target.value);
-                          console.log(e.target.value);
-                          console.log(task.id);
+
                           let realDate = new Date(
                             new Date(e.target.value).setHours(0, 0, 0, 0)
                           );
@@ -183,41 +151,12 @@ const Viewagenda = ({ tasks, setUpdate, user }) => {
                       </Button>
                     </Td>
                   </Tr>
-                  /* <div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div>
-                      {
-                        new Date(task.date.seconds * 1000)
-                          .toISOString()
-                          .split('T')[0]
-                      }
-                    </div>
-                    <div>{task.born}</div>
-                    <Button
-                      onClick={async () => {
-                        await deleteDoc(doc(db, 'users', task.id));
-                        setUpdate(task.id);
-                      }}
-                    >
-                      Delete
-                    </Button>
-                  </div> */
                 );
               })}
             </Tbody>
           </Table>
         </TableContainer>
       )}
-      {/* {JSON.stringify(tasks)} */}
-      {/* <Button
-        onClick={() => {
-          console.log(tasks);
-        }}
-      >
-        View stuff
-      </Button> */}
     </div>
   );
 };

@@ -11,7 +11,7 @@ import { db } from '..';
 import { query, where } from 'firebase/firestore';
 const Addagenda = ({ date, addData, setText, text, deleteData, textInput }) => {
   // const [text, setText] = useState(undefined);
-  //   console.log(db);
+  //
   // const addData = async () => {
   //   try {
   //     const docRef = await addDoc(collection(db, 'users'), {
@@ -20,7 +20,7 @@ const Addagenda = ({ date, addData, setText, text, deleteData, textInput }) => {
   //       born: 1815,
   //       date: date,
   //     });
-  //     console.log(
+  //
   //       'Document written with IDD: ',
   //       docRef.id,
   //       date.toISOString().split('T')[0]

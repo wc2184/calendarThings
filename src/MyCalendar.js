@@ -21,7 +21,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export function MyCalendar({ user }) {
   const auth = getAuth();
-  // console.log(auth.currentUser.uid, 'THE AUTH INSIDE');
+  //
   let now = new Date();
   now.setHours(0, 0, 0, 0);
   const [date, setDate] = useState(now);
@@ -30,8 +30,8 @@ export function MyCalendar({ user }) {
   const [update, setUpdate] = useState();
   const [getAll, setGetAll] = useState(false);
   const textInput = useRef(null);
-  console.log(tasks, 'task');
-  // console.log(date);
+
+  //
   const changeDate = date => {
     setGetAll(false);
     setDate(date);
@@ -39,8 +39,6 @@ export function MyCalendar({ user }) {
 
   const handler = e => {
     if (e.keyCode === 191) {
-      console.log('pressed /');
-
       textInput.current.focus();
     }
   };
@@ -48,7 +46,6 @@ export function MyCalendar({ user }) {
     window.addEventListener('keyup', handler, false);
 
     const renderTasks = async () => {
-      console.log(user.uid, 'userUID boi');
       if (getAll === true) {
         const usersRef = collection(db, user.uid);
         const querySnapshot = await getDocs(
@@ -58,20 +55,20 @@ export function MyCalendar({ user }) {
         const agendas = [];
         querySnapshot.forEach(doc => {
           let obj = doc.data();
-          console.log(obj);
+
           obj.id = doc.id;
           agendas.push(obj);
           // agendas.push(doc.data(), doc.id);
-          //   console.log(doc.data());
-          //   console.log(
+          //
+          //
           //     `${doc.id} => ${doc.data().date.toDate().toISOString().split('T')[0]}`
           //   );
         });
-        console.log(agendas);
+
         agendas.sort((a, b) => {
           return a.time > b.time ? 1 : b.time > a.time ? -1 : 0;
         });
-        console.log(agendas);
+
         setTasks(agendas);
       } else {
         // Create a reference to the cities collection
@@ -91,8 +88,8 @@ export function MyCalendar({ user }) {
           obj.id = doc.id;
           agendas.push(obj);
           // agendas.push(doc.data(), doc.id);
-          //   console.log(doc.data());
-          //   console.log(
+          //
+          //
           //     `${doc.id} => ${doc.data().date.toDate().toISOString().split('T')[0]}`
           //   );
         });
@@ -100,8 +97,7 @@ export function MyCalendar({ user }) {
         agendas.sort((a, b) => {
           return a.time > b.time ? 1 : b.time > a.time ? -1 : 0;
         });
-        console.log(agendas, 'agendas in the mycal');
-        console.log('does it run here');
+
         setTasks(agendas);
       }
     };
@@ -122,12 +118,7 @@ export function MyCalendar({ user }) {
 
         // 2022-09-04T00:00
       });
-      console.log(
-        'Document written with IDD: ',
-        docRef.id,
-        date.toISOString().split('T')[0]
-      );
-      console.log(JSON.stringify(date), 'date here');
+
       setText('');
       setUpdate(uuidv4());
     } catch (e) {
@@ -143,7 +134,6 @@ export function MyCalendar({ user }) {
     // const q = query(usersRef, where('first', '==', 'Ada'));
     const stuff = await getDocs(collection(db, user.uid));
     stuff.forEach(async docc => {
-      console.log(docc.data());
       await deleteDoc(doc(db, user.uid, docc.id));
     });
     // setText(text);
@@ -151,9 +141,9 @@ export function MyCalendar({ user }) {
       setUpdate(Math.random());
     }, 500);
   };
-  // console.log(date.toDateString(), 'date');
-  // console.log(now.toDateString(), 'now');
-  // console.log(date.toDateString() == now.toDateString());
+  //
+  //
+  //
   const pushToToday = async () => {
     // Create a reference to the cities collection
     const usersRef = collection(db, user.uid);
@@ -169,7 +159,6 @@ export function MyCalendar({ user }) {
 
     querySnapshot.forEach(async docu => {
       let obj = docu.data();
-      console.log(docu.data(), 'HELLO MAN WHAT THE FUCK');
 
       obj.id = docu.id;
       await updateDoc(doc(db, user.uid, obj.id), {
@@ -179,8 +168,8 @@ export function MyCalendar({ user }) {
       });
       // agendas.push(obj);
       // agendas.push(doc.data(), doc.id);
-      //   console.log(doc.data());
-      //   console.log(
+      //
+      //
       //     `${doc.id} => ${doc.data().date.toDate().toISOString().split('T')[0]}`
       //   );
       setUpdate(uuidv4());
