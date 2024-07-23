@@ -105,7 +105,7 @@ function App() {
               <Image
                 width="100%"
                 mb="-17"
-                src="https://res.cloudinary.com/dkg7lxnj2/image/upload/v1676116464/YoutubeDLNow_kvtefz.png"
+                src="https://res.cloudinary.com/dkg7lxnj2/image/upload/v1676116760/calendarThings_lngnnd.png"
               ></Image>
             </a>
             <VStack>
